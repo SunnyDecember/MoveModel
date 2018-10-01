@@ -16,6 +16,8 @@ namespace Runing
 
         //[SerializeField]
         //Text _text;
+        [SerializeField]
+        private Transform _gridCanvas;
 
         public static MainSceneUI instance;
 
@@ -34,22 +36,28 @@ namespace Runing
         /// </summary>
         /// <param name="isShow"></param>
         /// <param name="info"></param>
-        public void SetInfoWin(string info = "")
+        public void SetInfoWin(NodeData nodeData)
         {
-            GameObject infoWin = Instantiate(Resources.Load("Info")) as GameObject;
-            infoWin.transform.SetParent(transform);
-            infoWin.transform.localPosition = Vector3.zero;
-            infoWin.transform.localRotation = Quaternion.identity;
-            infoWin.transform.localScale = Vector3.one;
-            
-            infoWin.GetComponentInChildren<Text>().text = info;
-            StartCoroutine(DelayHideInfoWin(infoWin));
+            InfoWindow infoWindow = (Instantiate(Resources.Load("InfoWindow")) as GameObject).GetComponent<InfoWindow>();
+            infoWindow.transform.SetParent(transform);
+            //infoWindow.transform.localPosition = Vector3.zero;
+            (infoWindow.transform  as RectTransform).anchoredPosition = Vector3.zero;
+            infoWindow.transform.localRotation = Quaternion.identity;
+            infoWindow.transform.localScale = Vector3.one;
+            infoWindow.UpdateData(nodeData);
         }
 
-        IEnumerator DelayHideInfoWin(GameObject infoWin)
+        public Grid CreateGridUI(NodeData data, Vector3 position, Quaternion rotation)
         {
-            yield return new WaitForSeconds(2f);
-            DestroyImmediate(infoWin);
+            Grid grid = (Instantiate(Resources.Load("Grid")) as GameObject).GetComponent<Grid>();
+            grid.name = data.Name;
+            grid.transform.SetParent(_gridCanvas);
+            grid.transform.position = new Vector3(position.x + 0.03f, position.y, position.z);
+            grid.transform.rotation = rotation;
+            
+            grid.transform.localScale = Vector3.one;
+            grid.UpdateData(data);
+            return grid;
         }
     }
 }

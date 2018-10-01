@@ -17,35 +17,38 @@ namespace Runing
 
         private ReadConfig _readConfig;
         
-        void Awake ()
+        void Start ()
 		{
             TryAddScriptForNode();
+            //StartCoroutine(TryAddScriptForNode());
         }
-
-        async Task TryAddScriptForNode()
+        
+        /// <summary>
+        /// 待优化 todo
+        /// </summary>
+        /// <returns></returns>
+        void TryAddScriptForNode()
         {
             Transform[] modelNodeArray = TranGetChild(modelRoot);
 
             //把当前场景中所有模型的节点和配置表的节点比较，一样的节点名字便添加脚本和碰撞体。
             _readConfig = new ReadConfig();
-            for (int i = 0; i < _readConfig.nodeDataList.Count; i++)
+            Dictionary<string, NodeData> nodeDataDic = _readConfig.nodeDataDic;
+            for (int j = 0; j < modelNodeArray.Length; j++)
             {
-                NodeData data = _readConfig.nodeDataList[i];
-                Debug.Log(data.Name + "  " + data.Info);
-
-                for (int j = 0; j < modelNodeArray.Length; j++)
+                Transform modelNode = modelNodeArray[j];
+                
+                if(nodeDataDic.ContainsKey(modelNode.name))
                 {
-                    Transform modelNode = modelNodeArray[j];
-                    if (modelNode.name.Trim() == data.Name)
-                    {
-                        ModelNode modelNodeObject = modelNode.gameObject.AddComponent<ModelNode>();
-                        modelNodeObject.nodeData = data;
-                    }
-
-                    await Task.Delay(1);
+                    NodeData data = nodeDataDic[modelNode.name];
+                    ModelNode modelNodeObject = modelNode.gameObject.AddComponent<ModelNode>();
+                    modelNodeObject.nodeData = data;
+                    MainSceneUI.instance.CreateGridUI(data, modelNodeObject.transform.position, modelNodeObject.transform.rotation);
                 }
             }
         }
+
+
 
         /// <summary>
         /// 获取root模型下的所有节点
@@ -62,7 +65,7 @@ namespace Runing
             {
                 Transform front = queue.Dequeue();
                 result.Enqueue(front);
-                tryAddCollider(front);
+                //tryAddCollider(front);
 
                 for (int i = 0; i < front.childCount; i++)
                 {
@@ -76,22 +79,24 @@ namespace Runing
         /// 尝试添加collider碰撞体
         /// </summary>
         /// <param name="tran"></param>
-        void tryAddCollider(Transform tran)
-        {
-            if (null == tran)
-                return;
+        //void tryAddCollider(Transform tran)
+        //{
+        //    if (null == tran)
+        //        return;
 
-            if (null != tran.GetComponent<MeshFilter>() && null == tran.GetComponent<MeshCollider>())
-            {
-                tran.gameObject.AddComponent<MeshCollider>();
-            }
-        }
+        //    if (null != tran.GetComponent<MeshFilter>() && null == tran.GetComponent<BoxCollider>())
+        //    {
+        //        tran.gameObject.AddComponent<BoxCollider>();
+        //    }
+        //}
         
         void Update()
         {
+            Debug.Log("update");
             //同时支持鼠标和touch触摸，因为不知道他们的触摸屏电脑是用那种方式。
             if (!EventSystem.current.IsPointerOverGameObject() && (Input.GetMouseButtonDown(0) || Input.touchCount > 0))
             {
+                Debug.Log("点击");
                 TrySetInfo();
             }
         }
@@ -104,13 +109,15 @@ namespace Runing
         {
             RaycastHit raycastHit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
+            Debug.Log("1");
             if (Physics.Raycast(ray, out raycastHit))
             {
+                Debug.Log("2 " + raycastHit.transform.name);
                 ModelNode modelNode = raycastHit.transform.GetComponent<ModelNode>();
                 if (null != modelNode)
                 {
-                    MainSceneUI.instance.SetInfoWin(modelNode.nodeData.Info);
+                    Debug.Log("3");
+                    MainSceneUI.instance.SetInfoWin(modelNode.nodeData);
                 }
             }
         }

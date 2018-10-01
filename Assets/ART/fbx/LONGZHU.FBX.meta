@@ -1,0 +1,184 @@
+fileFormatVersion: 2
+guid: 962d27c7b5f6b8543ae80fd8f2d703f0
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Cylinder127
+    100002: Group47083
+    100004: Group52071
+    100006: Group54101
+    100008: Line364
+    100010: //RootNode
+    100012: Object187
+    100014: Object188
+    100016: Object190
+    100018: Object192
+    100020: Object193
+    100022: Object194
+    100024: Object195
+    100026: Object196
+    100028: Object197
+    100030: OilTank007
+    100032: OilTank008
+    100034: Sphere013
+    100036: Sphere014
+    400000: Cylinder127
+    400002: Group47083
+    400004: Group52071
+    400006: Group54101
+    400008: Line364
+    400010: //RootNode
+    400012: Object187
+    400014: Object188
+    400016: Object190
+    400018: Object192
+    400020: Object193
+    400022: Object194
+    400024: Object195
+    400026: Object196
+    400028: Object197
+    400030: OilTank007
+    400032: OilTank008
+    400034: Sphere013
+    400036: Sphere014
+    2100000: _yun-Ldefault
+    2100002: _longzhu-Gdefault
+    2100004: _LONG-Ldefault
+    2300000: Cylinder127
+    2300002: Group47083
+    2300004: Group52071
+    2300006: Group54101
+    2300008: Line364
+    2300010: Object187
+    2300012: Object188
+    2300014: Object190
+    2300016: Object192
+    2300018: Object193
+    2300020: Object194
+    2300022: Object195
+    2300024: Object196
+    2300026: Object197
+    2300028: OilTank007
+    2300030: OilTank008
+    2300032: Sphere013
+    2300034: Sphere014
+    3300000: Cylinder127
+    3300002: Group47083
+    3300004: Group52071
+    3300006: Group54101
+    3300008: Line364
+    3300010: Object187
+    3300012: Object188
+    3300014: Object190
+    3300016: Object192
+    3300018: Object193
+    3300020: Object194
+    3300022: Object195
+    3300024: Object196
+    3300026: Object197
+    3300028: OilTank007
+    3300030: OilTank008
+    3300032: Sphere013
+    3300034: Sphere014
+    4300000: Group54101
+    4300002: Cylinder127
+    4300004: Object187
+    4300006: Object188
+    4300008: Object190
+    4300010: Group52071
+    4300012: Object192
+    4300014: Object193
+    4300016: Group47083
+    4300018: Object194
+    4300020: Object195
+    4300022: Object196
+    4300024: Object197
+    4300026: Line364
+    4300028: OilTank007
+    4300030: Sphere013
+    4300032: Sphere014
+    4300034: OilTank008
+    2186277476908879412: ImportLogs
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
