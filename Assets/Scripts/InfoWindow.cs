@@ -9,7 +9,13 @@ public class InfoWindow : MonoBehaviour
     private Button _closeButton;
 
     [SerializeField]
-    private Text _text;
+    private Text _id;
+
+    [SerializeField]
+    private Text _info;
+
+    [SerializeField]
+    private Text _state;
 
     private NodeData _nodeData;
 
@@ -25,6 +31,8 @@ public class InfoWindow : MonoBehaviour
     public void UpdateData(NodeData nodeData)
     {
         _nodeData = nodeData;
-        _text.text = _nodeData.Info;
+        _info.text = _nodeData.Info;
+        _id.text = nodeData.ID;
+        _state.text = nodeData.HasSale ? "<color=red>已出售</color>" : "<color=green>可购买</color>"; 
     }
 }

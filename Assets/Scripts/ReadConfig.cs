@@ -16,14 +16,19 @@ public class NodeData
     public string Name;
     public string ID;
     public string Info;
+    public bool HasSale;
+    public string Value;
 }
 
 public class ReadConfig
 {
     private static string _nodeconfigFile = Application.streamingAssetsPath + "/NodeConfig.ini";
-
-    //public List<NodeData> nodeDataList = new List<NodeData>();
+    
     public Dictionary<string, NodeData> nodeDataDic = new Dictionary<string, NodeData>();
+
+    //public static ReadConfig instance { get; set; } = new ReadConfig();
+
+    //public void Init() { }
 
     public ReadConfig()
     {
@@ -44,6 +49,8 @@ public class ReadConfig
                 string name = sectionName;
                 string id = iniData[sectionName]["ID"];
                 string info = iniData[sectionName]["Info"];
+                string hasSale = iniData[sectionName]["HasSale"];
+                string value = iniData[sectionName]["Value"];
 
                 if (string.IsNullOrEmpty(name))
                 {
@@ -61,7 +68,9 @@ public class ReadConfig
                 nodeData.Name = name;
                 nodeData.Info = info.Trim();
                 nodeData.ID = id.Trim();
-                //nodeDataList.Add(nodeData);
+                nodeData.HasSale = (hasSale.Trim() == "1") ? true : false;
+                nodeData.Value = value.Trim();
+
                 if (!nodeDataDic.ContainsKey(name))
                 {
                     nodeDataDic.Add(name, nodeData);

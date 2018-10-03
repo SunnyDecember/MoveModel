@@ -72,15 +72,19 @@ public class GenerateConfig
         IniData iniData = parser.ReadFile(_nodeconfigFile);
         SectionDataCollection sectionCollection = new SectionDataCollection();
         iniData.Sections = sectionCollection;
-        
+        int count = 0;
+
         for (int i = 0; i < childArray.Length; i++)
         {
             Transform child = childArray[i];
             if (child.tag == "pw")
             {
                 sectionCollection.AddSection(child.name);
-                iniData[child.name]["ID"] = i.ToString();
-                iniData[child.name]["Info"] = "请录入信息_" + i;
+                iniData[child.name]["ID"] = count.ToString();
+                iniData[child.name]["Info"] = "请录入信息_" + count;
+                iniData[child.name]["HasSale"] = "1";
+                iniData[child.name]["Value"] = "预留的字段";
+                count++;
             }
         }
         

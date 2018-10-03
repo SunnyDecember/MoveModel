@@ -6,9 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/AwakeScene.unity
+    guid: fdaff5d23b84f68419bde1b026a50337
+  - enabled: 1
     path: Assets/EasyTouchBundle/EasyTouchControls/Examples/Version 1.X/Joystick-Direct-SimpleFPS.unity
     guid: 3ee1a13285e358249a301f6311176d2c
-  - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 99c9720ab356a0642a771bea13969a05
   m_configObjects: {}

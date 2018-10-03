@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine.EventSystems;
+using System;
 
 /* Author		: Runing
 ** Time			: 18.9.28
@@ -20,25 +21,22 @@ namespace Runing
         void Start ()
 		{
             TryAddScriptForNode();
-            //StartCoroutine(TryAddScriptForNode());
         }
-        
+
         /// <summary>
         /// 待优化 todo
         /// </summary>
         /// <returns></returns>
         void TryAddScriptForNode()
         {
-            Transform[] modelNodeArray = TranGetChild(modelRoot);
-
             //把当前场景中所有模型的节点和配置表的节点比较，一样的节点名字便添加脚本和碰撞体。
             _readConfig = new ReadConfig();
             Dictionary<string, NodeData> nodeDataDic = _readConfig.nodeDataDic;
-            for (int j = 0; j < modelNodeArray.Length; j++)
+            Transform[] array = modelRoot.GetComponentsInChildren<Transform>();
+
+            foreach (Transform modelNode in array)
             {
-                Transform modelNode = modelNodeArray[j];
-                
-                if(nodeDataDic.ContainsKey(modelNode.name))
+                if (nodeDataDic.ContainsKey(modelNode.name))
                 {
                     NodeData data = nodeDataDic[modelNode.name];
                     ModelNode modelNodeObject = modelNode.gameObject.AddComponent<ModelNode>();
@@ -48,32 +46,31 @@ namespace Runing
             }
         }
 
-
-
         /// <summary>
         /// 获取root模型下的所有节点
         /// </summary>
         /// <param name="tran"></param>
         /// <returns></returns>
-        Transform[] TranGetChild(Transform tran)
-        {
-            Queue<Transform> result = new Queue<Transform>();
-            Queue<Transform> queue = new Queue<Transform>();
-            queue.Enqueue(tran);
+        //Transform[] TranGetChild(Transform tran)
+        //IEnumerable TranGetChild(Transform tran)
+        //{
+        //    Queue<Transform> result = new Queue<Transform>();
+        //    Queue<Transform> queue = new Queue<Transform>();
+        //    queue.Enqueue(tran);
 
-            while (queue.Count > 0)
-            {
-                Transform front = queue.Dequeue();
-                result.Enqueue(front);
-                //tryAddCollider(front);
+        //    while (queue.Count > 0)
+        //    {
+        //        Transform front = queue.Dequeue();
+        //        yield return front;
+        //        //result.Enqueue(front);
+        //        //tryAddCollider(front);
 
-                for (int i = 0; i < front.childCount; i++)
-                {
-                    queue.Enqueue(front.GetChild(i));
-                }
-            }
-            return result.ToArray();
-        }
+        //        for (int i = 0; i < front.childCount; i++)
+        //        {
+        //            queue.Enqueue(front.GetChild(i));
+        //        }
+        //    }
+        //}
 
         /// <summary>
         /// 尝试添加collider碰撞体
@@ -92,11 +89,9 @@ namespace Runing
         
         void Update()
         {
-            Debug.Log("update");
             //同时支持鼠标和touch触摸，因为不知道他们的触摸屏电脑是用那种方式。
             if (!EventSystem.current.IsPointerOverGameObject() && (Input.GetMouseButtonDown(0) || Input.touchCount > 0))
             {
-                Debug.Log("点击");
                 TrySetInfo();
             }
         }
@@ -109,14 +104,11 @@ namespace Runing
         {
             RaycastHit raycastHit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            Debug.Log("1");
             if (Physics.Raycast(ray, out raycastHit))
             {
-                Debug.Log("2 " + raycastHit.transform.name);
                 ModelNode modelNode = raycastHit.transform.GetComponent<ModelNode>();
                 if (null != modelNode)
                 {
-                    Debug.Log("3");
                     MainSceneUI.instance.SetInfoWin(modelNode.nodeData);
                 }
             }

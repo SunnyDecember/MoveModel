@@ -46,18 +46,17 @@ namespace Runing
             infoWindow.transform.localScale = Vector3.one;
             infoWindow.UpdateData(nodeData);
         }
-
-        public Grid CreateGridUI(NodeData data, Vector3 position, Quaternion rotation)
+        
+        public void CreateGridUI(NodeData data, Vector3 position, Quaternion rotation)
         {
+            //生成Grid
             Grid grid = (Instantiate(Resources.Load("Grid")) as GameObject).GetComponent<Grid>();
-            grid.name = data.Name;
+            //grid.name = data.Name;
             grid.transform.SetParent(_gridCanvas);
-            grid.transform.position = new Vector3(position.x + 0.03f, position.y, position.z);
+            grid.transform.position = position;
             grid.transform.rotation = rotation;
-            
             grid.transform.localScale = Vector3.one;
             grid.UpdateData(data);
-            return grid;
         }
     }
 }
