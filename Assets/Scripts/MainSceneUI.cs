@@ -19,6 +19,15 @@ namespace Runing
         [SerializeField]
         private Transform _gridCanvas;
 
+        [SerializeField]
+        private Button _exitButton;
+
+        /// <summary>
+        /// 上下楼按钮
+        /// </summary>
+        [SerializeField]
+        private Button _floor;
+
         public static MainSceneUI instance;
 
         void Awake()
@@ -28,7 +37,17 @@ namespace Runing
 
         void Start ()
 		{
-            
+            _floor.onClick.AddListener(()=> 
+            {
+                MainScene.instance.UpDownFloor();
+            });
+
+            _exitButton.onClick.AddListener(()=> 
+            {
+#if !UNITY_EDITOR
+                Application.Quit();              
+#endif
+            });
         }
 
         /// <summary>

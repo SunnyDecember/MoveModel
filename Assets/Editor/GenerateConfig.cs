@@ -82,8 +82,8 @@ public class GenerateConfig
                 sectionCollection.AddSection(child.name);
                 iniData[child.name]["ID"] = count.ToString();
                 iniData[child.name]["Info"] = "请录入信息_" + count;
-                iniData[child.name]["HasSale"] = "1";
-                iniData[child.name]["Value"] = "预留的字段";
+                iniData[child.name]["HasSale"] = "0";
+                iniData[child.name]["Value"] = "v";
                 count++;
             }
         }
