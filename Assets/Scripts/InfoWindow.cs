@@ -33,6 +33,6 @@ public class InfoWindow : MonoBehaviour
         _nodeData = nodeData;
         _info.text = _nodeData.Info;
         _id.text = nodeData.ID;
-        _state.text = nodeData.HasSale ? "<color=red>已出售</color>" : "<color=green>可购买</color>"; 
+        _state.text = nodeData.HasSale ? "<color=red>结缘</color>" : "<color=green>可结缘</color>"; 
     }
 }

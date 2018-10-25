@@ -70,7 +70,7 @@ namespace Runing
 
             foreach (Transform modelNode in array)
             {
-                if (nodeDataDic.ContainsKey(modelNode.name))
+                if (modelNode.gameObject.activeSelf && nodeDataDic.ContainsKey(modelNode.name))
                 {
                     NodeData data = nodeDataDic[modelNode.name];
                     ModelNode modelNodeObject = modelNode.gameObject.AddComponent<ModelNode>();
