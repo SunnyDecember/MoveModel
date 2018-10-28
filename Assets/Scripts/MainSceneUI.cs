@@ -29,6 +29,7 @@ namespace Runing
         public Player player;
         public Transform minMapPlayer;
         public Image minMap;
+        public Text floorText;
 
         public Transform p0;
         public Transform p1;
@@ -41,9 +42,12 @@ namespace Runing
 
         void Start()
         {
+            ShowMap(MainScene.instance.floorIndex);
+
             _floor.onClick.AddListener(() =>
             {
-                MainScene.instance.UpDownFloor();
+                int floorIndex = MainScene.instance.UpDownFloor();
+                ShowMap(floorIndex);
             });
 
             _exitButton.onClick.AddListener(() =>
@@ -52,6 +56,14 @@ namespace Runing
                 Application.Quit();              
 #endif
             });
+        }
+
+        void ShowMap(int floorIndex)
+        {
+            //加载地图
+            Sprite mapObj = Resources.Load<Sprite>("MinMap_" + floorIndex);
+            minMap.sprite = mapObj;
+            floorText.text = floorIndex + " 楼";
         }
 
         /// <summary>

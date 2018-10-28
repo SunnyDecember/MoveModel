@@ -20,18 +20,18 @@ namespace Runing
             public Quaternion rotation;
         }
 
+        public static MainScene instance;
+
         public Transform modelRoot;
 
         public Player player;
 
+        public int floorIndex = 1;
+
         private ReadConfig _readConfig;
 
-        public static MainScene instance;
-
         private Dictionary<int, PlayerPosition> _floorPositionMap = new Dictionary<int, PlayerPosition>();
-
-        private int _floorIndex = 1;
-             
+ 
         void Awake()
         {
             instance = this;
@@ -49,7 +49,7 @@ namespace Runing
             _floorPositionMap.Add(2, pos2);
 
             //初始化角色位置
-            UpdatePlayerPosition(_floorIndex);
+            UpdatePlayerPosition(floorIndex);
         }
 
         void Start ()
@@ -172,16 +172,17 @@ namespace Runing
         /// <summary>
         /// 上下楼
         /// </summary>
-        public void UpDownFloor()
+        public int UpDownFloor()
         {
-            _floorIndex = (_floorIndex == 1 ? 2 : 1);
-            UpdatePlayerPosition(_floorIndex);
+            floorIndex = (floorIndex == 1 ? 2 : 1);
+            UpdatePlayerPosition(floorIndex);
+            return floorIndex;
         }
 
         void UpdatePlayerPosition(int floorIndex)
         {
-            player.transform.position = _floorPositionMap[_floorIndex].position;
-            player.transform.rotation = _floorPositionMap[_floorIndex].rotation;
+            player.transform.position = _floorPositionMap[this.floorIndex].position;
+            player.transform.rotation = _floorPositionMap[this.floorIndex].rotation;
         }
     }
 }
